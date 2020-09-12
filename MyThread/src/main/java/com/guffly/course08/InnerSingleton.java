@@ -1,5 +1,12 @@
 package com.guffly.course08;
 
+/** 
+ * 多线程
+ * Dubble check 静态内部类创建对象
+ * 
+ * @author guffly
+ * @since 2020/09/12
+ */
 public class InnerSingleton {
     private  static class Singleton {	
 	private static Singleton single = new Singleton();

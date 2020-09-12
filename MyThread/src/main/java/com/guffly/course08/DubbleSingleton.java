@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /** 
  * 多线程
- * Dubble check 双重校验
+ * Dubble check 双重校验创建对象
  * 
  * @author guffly
  * @since 2020/09/12
