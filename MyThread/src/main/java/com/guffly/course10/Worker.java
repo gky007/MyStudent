@@ -5,11 +5,11 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Worker implements Runnable{
     
-    private ConcurrentLinkedQueue<Task> workQueue;
+    private ConcurrentLinkedQueue<Object> workQueue;
     
     private ConcurrentHashMap<String, Object> resultMap;
     
-    public void setWorkerQueue(ConcurrentLinkedQueue<Task> workQueue) {
+    public void setWorkerQueue(ConcurrentLinkedQueue<Object> workQueue) {
 	this.workQueue = workQueue;
     }
 
@@ -19,7 +19,7 @@ public class Worker implements Runnable{
     
     public void run() {
 	while(true) {
-	    Task input = this.workQueue.poll();
+	    Task input = (Task)this.workQueue.poll();
 	    if (input == null) {
 		break;
 	    }

@@ -9,7 +9,7 @@ import com.sun.org.apache.xpath.internal.compiler.Compiler;
 
 public class Master {
     // 1. 承装任务的集合
-    private ConcurrentLinkedQueue<Task> workQueue = new ConcurrentLinkedQueue<Task>();
+    private ConcurrentLinkedQueue<Object> workQueue = new ConcurrentLinkedQueue<Object>();
     
     // 2. 使用HashMap承载所有Worker对象
     private HashMap<String, Thread> workers = new HashMap<String, Thread>();
@@ -30,7 +30,7 @@ public class Master {
     
     // 5. 提交方法
     public void submit(Task task) {
-	System.out.println(task.getName());
+//	System.out.println(task.getName());
 	this.workQueue.add(task);
     }
     
@@ -56,7 +56,7 @@ public class Master {
 	int ret = 0;
 	for(Map.Entry<String, Object> me : resultMap.entrySet()) {
 	    // 汇总消息
-	    System.out.println(me.toString());
+	    System.out.println("me:"+me.toString());
 	    ret += (Integer) me.getValue();
 	}
 	return ret;

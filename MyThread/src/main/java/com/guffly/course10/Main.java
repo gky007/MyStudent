@@ -7,9 +7,9 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
 	System.out.println("我的电脑线程数 ： "+Runtime.getRuntime().availableProcessors());
-	Master master = new Master(new Worker(), 10);
+	Master master = new Master(new Worker(), 1000);
 
-	for (int i = 1; i <= 100; i++) {
+	for (int i = 1; i <= 2; i++) {
 	    Task t = new Task();
 	    t.setId(i);
 	    t.setName("任务" + i);

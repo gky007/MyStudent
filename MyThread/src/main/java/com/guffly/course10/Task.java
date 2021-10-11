@@ -6,6 +6,8 @@ public class Task {
     private String name;
     
     private int price;
+    
+    private Object date;
 
     /**
      * @return the id
@@ -47,6 +49,20 @@ public class Task {
      */
     public void setPrice(int price) {
 	this.price = price;
+    }
+
+    /**
+     * @return the date
+     */
+    public Object getDate() {
+        return date;
+    }
+
+    /**
+     * @param date the date to set
+     */
+    public void setDate(Object date) {
+        this.date = date;
     }
 
 }
