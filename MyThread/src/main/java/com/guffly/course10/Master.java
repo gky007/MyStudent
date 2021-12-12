@@ -8,40 +8,42 @@ import java.util.concurrent.*;
 import com.sun.org.apache.xpath.internal.compiler.Compiler;
 
 public class Master {
-    // 1. ³Ğ×°ÈÎÎñµÄ¼¯ºÏ
+    // 1.  æ‰¿è£…ä»»åŠ¡çš„é›†åˆ
     private ConcurrentLinkedQueue<Object> workQueue = new ConcurrentLinkedQueue<Object>();
     
-    // 2. Ê¹ÓÃHashMap³ĞÔØËùÓĞWorker¶ÔÏó
+    // 2. ä½¿ç”¨HashMapæ‰¿è£…æ‰€æœ‰workå¯¹è±¡
     private HashMap<String, Thread> workers = new HashMap<String, Thread>();
     
-    // 3. Ê¹ÓÃÒ»¸öÈİÆ÷³Ğ×°Ã»Ò»¸öworker²¢Ö´ĞĞÈÎÎñµÄ½á¹û¼¯
+    // 3. ä½¿ç”¨ä¸€ä¸ªå®¹å™¨æ‰¿è£…æ‰€æœ‰çš„workå¹¶æ‰§è¡Œæ‰€æœ‰çš„ç»“æœé›†
     private ConcurrentHashMap<String, Object> resultMap = new ConcurrentHashMap<String, Object>();
     
-    // 4 . ¹¹Ôì·½·¨
+    // 4 . æ„é€ æ–¹æ³•
     public Master(Worker worker, int workerCount) {
-	// Ã¿Ò»¸öworker¶ÔÏó¶¼ĞèÒªÓĞmasterµÄÒıÓÃ£¬workQueueÓÃÓÚÈÎÎñµÄÁìÈ¡£¬resultMapÓÃÓÚÈÎÎñµÄÌá½»
+	// æ¯ä¸€ä¸ªworkå¯¹è±¡éƒ½ç”±masterå¼•ç”¨
 	worker.setWorkerQueue(this.workQueue);
 	worker.setResultMap(this.resultMap);
 	for (int i = 0; i < workerCount; i++) {
-	    //key±íÊ¾Ã¿¸öworkerµÄÃû×Ö£¬Value±íÊ¾Ã¿Ò»¸öÏß³Ì¶ÔÏó
-	    workers.put("×Ó½Úµã"+Integer.toString(i), new Thread(worker));
+	    //keyè¡¨ç¤ºæ¯ä¸€ä¸ªworkçš„åå­—Valueæ¯ä¸€ä¸ªçº¿ç¨‹æ‰§è¡Œå¯¹è±¡
+	    workers.put("å­èŠ‚ç‚¹"+Integer.toString(i), new Thread(worker));
 	}
     }
     
-    // 5. Ìá½»·½·¨
+    // 5. æäº¤æ–¹æ³•
     public void submit(Task task) {
 //	System.out.println(task.getName());
 	this.workQueue.add(task);
+	System.out.println(task.getName());
     }
     
-    // 6.ĞèÒªÓĞÒ»¸öÖ´ĞĞµÄ·½·¨£¨Æô¶¯Ó¦ÓÃ³ÌĞòÈÃËùÓĞµÄÓ¦ÓÃ¹¤×÷£©
+    // 6.éœ€è¦æœ‰ä¸€ä¸ªæ‰§è¡Œæ–¹æ³•ï¼ˆå¯åŠ¨åº”ç”¨ç¨‹åº è®©æ‰€æœ‰çš„workå·¥ä½œï¼‰
     public void execute () {
 	for(Map.Entry<String, Thread> me : workers.entrySet()) {
 	    me.getValue().start();
+	    System.out.println(me.getKey());
 	}
     }
 
-    // 8. ÅĞ¶ÏÏß³ÌÊÇ·ñÖ´ĞĞÍê±Ï
+    // 8. åˆ¤æ–­æ˜¯å¦æ‰§è¡Œå®Œæ¯•
     public boolean isComplete() {
 	for(Map.Entry<String, Thread> me : workers.entrySet()) {
 	    if(me.getValue().getState() != Thread.State.TERMINATED) {
@@ -51,12 +53,11 @@ public class Master {
 	return true;
     }
 
-    // 9.·µ»Ø½á¹û¼¯ºÍÊı×Ö
+    // 9.è¿”å›ç»“æœé›†æ•°æ®
     public int getResult() {
 	int ret = 0;
 	for(Map.Entry<String, Object> me : resultMap.entrySet()) {
-	    // »ã×ÜÏûÏ¢
-	    System.out.println("me:"+me.toString());
+	    // æ±‡æ€»é€»è¾‘
 	    ret += (Integer) me.getValue();
 	}
 	return ret;

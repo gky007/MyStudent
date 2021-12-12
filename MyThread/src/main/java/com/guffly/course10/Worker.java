@@ -23,7 +23,12 @@ public class Worker implements Runnable{
 	    if (input == null) {
 		break;
 	    }
-	    // 真正的去做业务处理
+	    // 鐪熸鐨勫仛涓氬姟澶勭悊
+//	    try {
+//		Thread.sleep(1000);
+//	    } catch (InterruptedException e) {
+//		e.printStackTrace();
+//	    }
 	    Object output = MyWorker.handle(input);
 	    this.resultMap.put(Integer.toString(input.getId()), output);
 	}
@@ -32,7 +37,7 @@ public class Worker implements Runnable{
 //    private Object handle(Task input) {
 //	Object output = null;
 //	try {
-//	    //表示处理业务的耗时，查询或者操作数据库
+//	    //task浠诲姟寰堣�楁椂
 //	    Thread.sleep(500);
 //	    output = input.getPrice();
 //	} catch (InterruptedException e) {

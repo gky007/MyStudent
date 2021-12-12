@@ -5,9 +5,9 @@ import java.util.Random;
 public class MyWorker extends Worker{
     public static Object handle(Task input) {
 	Object output = null;
-	// ±íÊ¾´¦ÀíÒµÎñµÄºÄÊ±£¬²éÑ¯»òÕß²Ù×÷Êı¾İ¿â
+	//taskä»»åŠ¡å¾ˆè€—æ—¶
 	int srNo = new Random().nextInt(1000);
-	System.out.println("´´½¨ÕıÊ½µ¥³É¹¦£¬µ¥ºÅÎª£º" + srNo);
+//	System.out.println("å•å·ï¼š" + srNo);
 	output = input.getPrice();
 	return output;
     }

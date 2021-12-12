@@ -1,30 +1,30 @@
 package com.guffly.course06;
 /**
- * volatile²»¾ß±¸Ô­×ÓĞÔ²»ÄÜÌæ´úsynchronized
+ * volatileä¸å…·å¤‡åŸå­æ€§ä¸èƒ½æ›¿ä»£synchronized
  * */
 public class VolatileNoAtomic1 extends Thread{
-    private static volatile int count;
-    
-    public static void addCount() {
-	for (int i = 0; i < 1000; i++) {
-	    count++;
-	}
-	System.out.println(count);
-    }
-    
-    public void run() {
-	addCount();
-    }
+	private static volatile int count;
 
-    // ×îºóÒ»´Î²»ÊÇ10000£¬volatile²»¾ß±¸Ô­×ÓĞÔ
-    public static void main(String[] args) {
-	VolatileNoAtomic1[] arr = new VolatileNoAtomic1[10];
-	for (int i = 0; i < 10; i++) {
-	    arr[i] = new VolatileNoAtomic1();
+	public static void addCount() {
+		for (int i = 0; i < 1000; i++) {
+			count++;
+		}
+		System.out.println(count);
 	}
-	
-	for (int i = 0; i < 10; i++) {
-	    arr[i].start();
+
+	public void run() {
+		addCount();
 	}
-    }
+
+	// æœ€åä¸€æ¬¡ä¸æ˜¯10000ï¼Œvolatileä¸å…·å¤‡åŸå­æ€§
+	public static void main(String[] args) {
+		VolatileNoAtomic1[] arr = new VolatileNoAtomic1[10];
+		for (int i = 0; i < 10; i++) {
+			arr[i] = new VolatileNoAtomic1();
+		}
+
+		for (int i = 0; i < 10; i++) {
+			arr[i].start();
+		}
+	}
 }

@@ -1,8 +1,7 @@
 package com.guffly.course08;
 
 /** 
- * 多线程
- * Dubble check 静态内部类创建对象
+ * Dubble check 
  * 
  * @author guffly
  * @since 2020/09/12

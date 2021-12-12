@@ -1,44 +1,44 @@
 package com.guffly.course03;
 
 /**
- * Ïß³Ì»Ø¹Ë£º
- * 
+ * çº¿ç¨‹å›é¡¾ï¼š
+ *
  * @author guffly
  * @since 2020/09/12
  */
 public class MyObject {
-    public synchronized void method1() {
-	try {
-	    System.out.println(Thread.currentThread().getName());
-	    Thread.sleep(4000);
-	} catch (InterruptedException e) {
-	    e.printStackTrace();
+	public synchronized void method1() {
+		try {
+			System.out.println(Thread.currentThread().getName());
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
-    }
-    
-    public synchronized void method2() {
-	System.out.println(Thread.currentThread().getName());
-    }
-    // ×¢Òârun·½·¨Êä³öË³Ğò
-    public static void main(String[] args) {
-	final MyObject mo = new MyObject();
 
-	/**
-	 * ·ÖÎö
-	 * t1¶ÔÏó»á³ÖÓĞobject¶ÔÏóµÄlockËø£¬t2Ïß³Ì¿ÉÒÔÒì²½µÄ·½Ê½µ÷ÓÃ¶ÔÏóÖĞµÄ·ÇsynchronizeĞŞÊÎµÄ·½·¨
-	 * t1¶ÔÏó»á³ÖÓĞobject¶ÔÏóµÄlockËø£¬t2Ïß³ÌÈç¹ûÔÚÕâ¸öÊ±ºòµ÷ÓÃ¶ÔÏóÖĞµÄÍ¬²½£¨synchronize£©·½·¨ÔòĞèµÈ´ı£¬Ò²¾ÍÊÇÍ¬²½
-	 * */
-	Thread t1 = new Thread(new Runnable() {
-	    public void run() {
-		mo.method1();
-	    }
-	}, "t1");
-	Thread t2 = new Thread(new Runnable() {
-	    public void run() {
-		mo.method2();
-	    }
-	}, "t2");
-	t1.start();
-	t2.start();
-    }
+	public synchronized void method2() {
+		System.out.println(Thread.currentThread().getName());
+	}
+	// æ³¨æ„runæ–¹æ³•è¾“å‡ºé¡ºåº
+	public static void main(String[] args) {
+		final MyObject mo = new MyObject();
+
+		/**
+		 * åˆ†æ
+		 * t1å¯¹è±¡ä¼šæŒæœ‰objectå¯¹è±¡çš„locké”ï¼Œt2çº¿ç¨‹å¯ä»¥å¼‚æ­¥çš„æ–¹å¼è°ƒç”¨å¯¹è±¡ä¸­çš„ésynchronizeä¿®é¥°çš„æ–¹æ³•
+		 * t1å¯¹è±¡ä¼šæŒæœ‰objectå¯¹è±¡çš„locké”ï¼Œt2çº¿ç¨‹å¦‚æœåœ¨è¿™ä¸ªæ—¶å€™è°ƒç”¨å¯¹è±¡ä¸­çš„åŒæ­¥ï¼ˆsynchronizeï¼‰æ–¹æ³•åˆ™éœ€ç­‰å¾…ï¼Œä¹Ÿå°±æ˜¯åŒæ­¥
+		 * */
+		Thread t1 = new Thread(new Runnable() {
+			public void run() {
+				mo.method1();
+			}
+		}, "t1");
+		Thread t2 = new Thread(new Runnable() {
+			public void run() {
+				mo.method2();
+			}
+		}, "t2");
+		t1.start();
+		t2.start();
+	}
 }

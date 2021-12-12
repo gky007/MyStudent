@@ -1,8 +1,5 @@
 package com.guffly.course06;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * volatile
  * 
@@ -17,20 +14,20 @@ public class RunThread2 extends Thread{
     }
     
     public void run() {
-	System.out.println("½øÈërun·½·¨¡£¡£¡£");
-	while(isRunning = true) {
-	    // TODO
-	}
-	System.out.println("Ïß³Ì·½·¨Í£Ö¹");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½runï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		while(isRunning = true) {
+			// TODO
+		}
+		System.out.println("ï¿½ß³Ì·ï¿½ï¿½ï¿½Í£Ö¹");
     }
 
     public static void main(String[] args) throws InterruptedException {
-	RunThread2 rt = new RunThread2();
-	rt.start();
-	Thread.sleep(3000);
-	rt.setRunning(false);
-	System.out.println("isRunningµÄÖµÒÑ¾­±»ÉèÖÃÁËfalse");
-	Thread.sleep(1000);
-	System.out.println(rt.isRunning);
+		RunThread2 rt = new RunThread2();
+		rt.start();
+		Thread.sleep(3000);
+		rt.setRunning(false);
+		System.out.println("isRunningï¿½ï¿½Öµï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + isRunning);
+		Thread.sleep(1000);
+		System.out.println(rt.isRunning);
     }
 }

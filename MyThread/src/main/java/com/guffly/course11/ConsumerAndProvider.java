@@ -6,31 +6,34 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class ConsumerAndProvider {
-    // ´´½¨Ò»¸öÏß³Ì³Ø
-    public static void main(String[] args) throws InterruptedException {
+		// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ß³Ì³ï¿½
+		public static void main(String[] args) throws InterruptedException {
 
-	BlockingQueue<MyTask> blockingQueue = new LinkedBlockingQueue<MyTask>(10);
+		BlockingQueue<MyTask> blockingQueue = new LinkedBlockingQueue<MyTask>(10);
 
-	// Éú²úÕß
-	Provider p1 = new Provider(blockingQueue);
-	Provider p2 = new Provider(blockingQueue);
-	Provider p3 = new Provider(blockingQueue);
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		Provider p1 = new Provider(blockingQueue);
+		Provider p2 = new Provider(blockingQueue);
+		Provider p3 = new Provider(blockingQueue);
 
-	// Ïû·ÑÕß
-	Consumer c1 = new Consumer(blockingQueue);
-	Consumer c2 = new Consumer(blockingQueue);
-	Consumer c3 = new Consumer(blockingQueue);
-	ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
-	cachedThreadPool.execute(p1);
-	cachedThreadPool.execute(p2);
-	cachedThreadPool.execute(p3);
-	cachedThreadPool.execute(c1);
-	cachedThreadPool.execute(c2);
-	cachedThreadPool.execute(c3);
-	Thread.sleep(3000);
-	p1.stop();
-	p2.stop();
-	p3.stop();
-	Thread.sleep(2000);
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		Consumer c1 = new Consumer(blockingQueue);
+		Consumer c2 = new Consumer(blockingQueue);
+		Consumer c3 = new Consumer(blockingQueue);
+		Consumer c4 = new Consumer(blockingQueue);
+		ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
+		cachedThreadPool.execute(p1);
+		cachedThreadPool.execute(p2);
+		cachedThreadPool.execute(p3);
+		cachedThreadPool.execute(c1);
+		cachedThreadPool.execute(c2);
+		cachedThreadPool.execute(c3);
+		cachedThreadPool.execute(c4);
+		Thread.sleep(3000);
+		p1.stop();
+		p2.stop();
+		p3.stop();
+		Thread.sleep(2000);
+		cachedThreadPool.shutdown();
     }
 }

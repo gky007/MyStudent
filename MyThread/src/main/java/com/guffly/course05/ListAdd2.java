@@ -4,65 +4,65 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Ïß³Ì½»»¥
- * 
+ * çº¿ç¨‹äº¤äº’
+ *
  * @author guffly
  * @since 2020/09/12
  */
 public class ListAdd2 {
-    private volatile static List list = new ArrayList();
+	private volatile static List list = new ArrayList();
 
-    public void add() {
-	list.add("12323");
-    }
+	public void add() {
+		list.add("12323");
+	}
 
-    private int size() {
-	return list.size();
-    }
+	private int size() {
+		return list.size();
+	}
 
-    public static void main(String[] args) {
-	final ListAdd2 listAdd2 = new ListAdd2();
+	public static void main(String[] args) {
+		final ListAdd2 listAdd2 = new ListAdd2();
 
-	// ÊµÀý»¯³öÀ´Ò»¸ölock
-	// µ±Ê¹ÓÃwaitºÍnotifyµÄÊ±ºò£¬Ò»¶¨ÒªÅäºÏsynchronized¹Ø¼ü×Ö
-	final Object lock = new Object();
-	Thread t1 = new Thread(new Runnable() {
-	    public void run() {
-		try {
-		    synchronized (lock) {
-			for (int i = 0; i < 10; i++) {
-			    listAdd2.add();
-			    System.out.println("µ±Ç°Ïß³Ì£º" + Thread.currentThread().getName() + "Ìí¼ÓÁËÒ»¸öÔªËØ¡£¡£¡£");
-			    Thread.sleep(500);
-			    if (listAdd2.size() == 5) {
-				lock.notify();
-				System.out.println("ÒÑ·¢³öÍ¨Öª¡£¡£¡£");
-			    }
+		// å®žä¾‹åŒ–å‡ºæ¥ä¸€ä¸ªlock
+		// å½“ä½¿ç”¨waitå’Œnotifyçš„æ—¶å€™ï¼Œä¸€å®šè¦é…åˆsynchronizedå…³é”®å­—
+		final Object lock = new Object();
+		Thread t1 = new Thread(new Runnable() {
+			public void run() {
+				try {
+					synchronized (lock) {
+						for (int i = 0; i < 10; i++) {
+							listAdd2.add();
+							System.out.println("å½“å‰çº¿ç¨‹ï¼š" + Thread.currentThread().getName() + "æ·»åŠ äº†ä¸€ä¸ªå…ƒç´ ã€‚ã€‚ã€‚");
+							Thread.sleep(500);
+							if (listAdd2.size() == 5) {
+								lock.notify();
+								System.out.println("å·²å‘å‡ºé€šçŸ¥ã€‚ã€‚ã€‚");
+							}
+						}
+					}
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+
 			}
-		    }
-		} catch (InterruptedException e) {
-		    e.printStackTrace();
-		}
+		}, "t1");
 
-	    }
-	}, "t1");
-
-	Thread t2 = new Thread(new Runnable() {
-	    public void run() {
-		  synchronized (lock) {
-		    if (listAdd2.size() != 5) {
-			try {
-			    lock.wait();
-			} catch (InterruptedException e) {
-			    e.printStackTrace();
+		Thread t2 = new Thread(new Runnable() {
+			public void run() {
+				synchronized (lock) {
+					if (listAdd2.size() != 5) {
+						try {
+							lock.wait();
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+					System.out.println("å½“å‰çº¿ç¨‹ï¼š" + Thread.currentThread().getName() + "æ·»åŠ äº†ä¸€ä¸ªå…ƒç´ ã€‚ã€‚ã€‚");
+					throw new RuntimeException();
+				}
 			}
-		    }
-		    System.out.println("µ±Ç°Ïß³Ì£º" + Thread.currentThread().getName() + "Ìí¼ÓÁËÒ»¸öÔªËØ¡£¡£¡£");
-		    throw new RuntimeException();
-		  }
-	    }
-	}, "t2");
-	t2.start();
-	t1.start();
-    }
+		}, "t2");
+		t2.start();
+		t1.start();
+	}
 }

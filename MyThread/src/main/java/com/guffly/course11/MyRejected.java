@@ -7,8 +7,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class MyRejected implements RejectedExecutionHandler {
 
     public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
-	System.out.println("¾Ü¾ø²ßÂÔÖ´ĞĞÁË¡£¡£¡£");
-	System.out.println("µ±Ç°ÈÎÎñ±»¾Ü¾øÁË"+r.toString());
+	 System.out.println("è‡ªå®šä¹‰å¤„ç†..");
+	 System.out.println("å½“å‰è¢«æ‹’ç»ä»»åŠ¡ä¸ºï¼š" + r.toString());
     }
 
 }

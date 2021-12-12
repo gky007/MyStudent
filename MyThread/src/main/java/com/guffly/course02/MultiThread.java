@@ -1,7 +1,7 @@
 package com.guffly.course02;
 
 /**
- * Ïß³Ì»Ø¹Ë£º ÔÚ¾²Ì¬·½·¨ÉÏ¼ÓÈësynchronized¹Ø¼ü×Ö£¬±íÊ¾Ëø¶¨£¬classÀà£¬¼Óstatic Àà¼¶±ğµÄËø£¨¶ÀÕ¼classÀà£©¡£
+ * ï¿½ß³Ì»Ø¹Ë£ï¿½ ï¿½Ú¾ï¿½Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½synchronizedï¿½Ø¼ï¿½ï¿½Ö£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½classï¿½à£¬ï¿½ï¿½static ï¿½à¼¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¼classï¿½à£©ï¿½ï¿½
  * 
  * @author guffly
  * @since 2020/09/12
@@ -9,16 +9,16 @@ package com.guffly.course02;
 public class MultiThread {
     private static int num = 0;
 
-    public static synchronized void printNum(String tag) {
+    public static void printNum(String tag) {
 	try {
 	    if (tag.equals("a")) {
-		num = 100;
-		System.out.println("tag a, set num over!");
-		Thread.sleep(1000);
+			num = 100;
+			System.out.println("tag a, set num over!");
+			Thread.sleep(1000);
 	    } else {
-		num = 200;
-		System.out.println("tag b, set num over!");
-		Thread.sleep(1000);
+			num = 200;
+			System.out.println("tag b, set num over!");
+			Thread.sleep(1000);
 	    }
 	    System.out.println("tag = " + tag + " num = " + num);
 	} catch (InterruptedException e) {
@@ -26,20 +26,16 @@ public class MultiThread {
 	}
     }
 
-    // ×¢Òârun·½·¨Êä³öË³Ğò
+    // ×¢ï¿½ï¿½runï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½ï¿½
     public static void main(String[] args) {
 	final MultiThread m1 = new MultiThread();
 	final MultiThread m2 = new MultiThread();
 
-	Thread t1 = new Thread(new Runnable() {
-	    public void run() {
+	Thread t1 = new Thread(() -> {
 		m1.printNum("a");
-	    }
 	});
-	Thread t2 = new Thread(new Runnable() {
-	    public void run() {
+	Thread t2 = new Thread(() -> {
 		m1.printNum("b");
-	    }
 	});
 	t1.start();
 	t2.start();

@@ -3,7 +3,7 @@ package com.guffly.course06;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * volatile²»¾ß±¸Ô­×ÓĞÔ
+ * volatileä¸å…·å¤‡åŸå­æ€§
  */
 public class VolatileNoAtomic2 extends Thread {
 //    private static volatile int count;
@@ -17,10 +17,10 @@ public class VolatileNoAtomic2 extends Thread {
     }
 
     public void run() {
-	addCount();
+		addCount();
     }
 
-    // ×îºóÒ»´Î²»ÊÇ10000£¬volatile²»¾ß±¸Ô­×ÓĞÔ
+    // æœ€åä¸€æ¬¡ä¸æ˜¯1000ï¼Œvolatileä¸å…·å¤‡åŸå­æ€§
     public static void main(String[] args) {
 	VolatileNoAtomic2[] arr = new VolatileNoAtomic2[10];
 	for (int i = 0; i < 10; i++) {

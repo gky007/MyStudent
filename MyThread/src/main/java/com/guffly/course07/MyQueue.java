@@ -1,24 +1,22 @@
 package com.guffly.course07;
 
 import java.util.LinkedList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * ×Ô¶¨Òå¶ÓÁĞ
+ * ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * 
  * @author guffly
  * @since 2020/09/12
  * */
 public class MyQueue {
-    // 1.ĞèÒªÒ»¸ö³ĞÔØÔªËØµÄ¼¯ºÏ
+    // 1.ï¿½ï¿½ÒªÒ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ØµÄ¼ï¿½ï¿½ï¿½
     private LinkedList<Object> list = new LinkedList<Object>();
     
-    // 2.ĞèÒªÒ»¸ö¼ÆÊıÆ÷
+    // 2.ï¿½ï¿½ÒªÒ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private AtomicInteger count = new AtomicInteger(0);
     
-    // 3.ĞèÒªÉèÖÃÉÏÏÂÏŞ
+    // 3.ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private final int minSize = 0;
     
     private final int maxSize;
@@ -27,7 +25,7 @@ public class MyQueue {
 	this.maxSize = maxSize;
     }
     
-    // 5.³õÊ¼»¯Ëø¶ÔÏó
+    // 5.ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private final Object lock = new Object();
     
     public void put(Object obj) {
@@ -39,12 +37,12 @@ public class MyQueue {
 		    e.printStackTrace();
 		}
 	    }
-	    // 1.¼ÓÈëÔªËØ
+	    // 1.ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½
 	    list.add(obj);
-	    System.out.println(Thread.currentThread().getName() + " µ±Ç°¼ÓÈëµÄÔªËØÊÇ£º"+ obj);
-	    // 2.¼ÆÊıÆ÷ÀÛ¼Ó
+	    System.out.println(Thread.currentThread().getName() + " å½“å‰åŠ å…¥å…ƒç´ æ˜¯ "+ obj);
+	    // 2.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û¼ï¿½
 	    count.incrementAndGet();
-	    // 3.Í¨ÖªÁíÒ»¸öÏß³Ì
+	    // 3.Í¨Öªï¿½ï¿½Ò»ï¿½ï¿½ï¿½ß³ï¿½
 	    lock.notify();
 	}
     }
@@ -60,12 +58,12 @@ public class MyQueue {
 		    e.printStackTrace();
 		}
 	    }
-	    // 1.ÒÆ³ıÔªËØ
+	    // 1.ï¿½Æ³ï¿½Ôªï¿½ï¿½
 	    retObj = list.removeFirst();
-	    // 2.¼ÆÊıÆ÷¼õÒ»
+	    // 2.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»
 	    count.decrementAndGet();
-	    System.out.println(Thread.currentThread().getName() + " ÒÆ³ı³öµÄÔªËØÎª£º"+ retObj);
-	    // 3.Í¨ÖªÁíÒ»¸öÏß³Ì
+	    System.out.println(Thread.currentThread().getName() + " å½“å‰ç§»é™¤å…ƒç´ æ˜¯ "+ retObj);
+	    // 3.Í¨Öªï¿½ï¿½Ò»ï¿½ï¿½ï¿½ß³ï¿½
 	    lock.notify();
 	}
 	return retObj;
@@ -86,7 +84,7 @@ public class MyQueue {
 	myQueue.put("d");
 	myQueue.put("e");
 	
-	System.out.println("µ±Ç°ÈİÆ÷³¤¶È£º"+myQueue.getSize());
+	System.out.println("å®¹å™¨é•¿åº¦ "+myQueue.getSize());
 	
 	Thread t1 = new Thread(new Runnable() {
 	    public void run() {

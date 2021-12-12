@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 线程交互
+ * 锟竭程斤拷锟斤拷
  * 
  * @author guffly
  * @since 2020/09/12
@@ -28,14 +28,14 @@ public class ListAdd1 {
 		try {
 		    for (int i = 0; i < 10; i++) {
 			listAdd.add();
-			System.out.println("当前线程：" + Thread.currentThread().getName() + "添加了一个元素。。。");
+			System.out.println("绾跨▼ " + Thread.currentThread().getName() + "娣诲姞鍏冪礌");
 			Thread.sleep(500);
 		    }
 		} catch (InterruptedException e) {
 		    e.printStackTrace();
 		}
 		if (listAdd.size() == 5) {
-		    System.out.println("已发出通知。。。");
+		    System.out.println(" --------");
 		}
 	    }
 	}, "t1");
@@ -44,7 +44,7 @@ public class ListAdd1 {
 	    public void run() {
 		while (true) {
 		    if (listAdd.size() == 5) {
-			System.out.println("当前线程：" + Thread.currentThread().getName() + "添加了一个元素。。。");
+			System.out.println("绾跨▼ " + Thread.currentThread().getName() + " ");
 			throw new RuntimeException();
 		    }
 		}

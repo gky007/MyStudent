@@ -2,17 +2,17 @@ package com.guffly.course10;
 
 import java.util.Random;
 /**
- * master_worker³¡¾°Ê¹ÓÃ£¬·ÖÅäÈÎÎñ¸øworker£¬È»ºó»ã×Ü¸ømaster
+ * master_workerè®¾è®¡æ¨¡å¼
  * */
 public class Main {
     public static void main(String[] args) {
-	System.out.println("ÎÒµÄµçÄÔÏß³ÌÊı £º "+Runtime.getRuntime().availableProcessors());
-	Master master = new Master(new Worker(), 1000);
+	System.out.println("æˆ‘çš„æœºå™¨å¯ç”¨çš„processæ•°é‡ï¼š"+Runtime.getRuntime().availableProcessors());
+	Master master = new Master(new Worker(), Runtime.getRuntime().availableProcessors());
 
-	for (int i = 1; i <= 2; i++) {
+	for (int i = 1; i <= 100; i++) {
 	    Task t = new Task();
 	    t.setId(i);
-	    t.setName("ÈÎÎñ" + i);
+	    t.setName("ä»»åŠ¡" + i);
 	    t.setPrice(new Random().nextInt(1000));
 	    master.submit(t);
 	}
@@ -24,7 +24,7 @@ public class Main {
 	    if (master.isComplete()) {
 		long end = System.currentTimeMillis() - start;
 		int ret = master.getResult();
-		System.out.println("×îÖÕ½á¹û£º" + ret + " Ö´ĞĞÊ±¼ä£º" + end);
+		System.out.println("æœ€ç»ˆç»“æœï¼š" + ret + "ï¼Œè€—æ—¶ï¼š" + end+"ms");
 		break;
 	    }
 	}

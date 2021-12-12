@@ -1,54 +1,42 @@
 package com.guffly.course11;
 
 public class MyTask implements Runnable {
-    private int id;
-    private String name;
-
+    private int taskId;
+    private String taskName;
+     
+    public MyTask(int taskId, String taskName){
+        this.taskId = taskId;
+        this.taskName = taskName;
+    }
+     
+    public int getTaskId() {
+        return taskId;
+    }
+ 
+    public void setTaskId(int taskId) {
+        this.taskId = taskId;
+    }
+ 
+    public String getTaskName() {
+        return taskName;
+    }
+ 
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
+    }
+ 
     public void run() {
-	System.out.println("任务id= " + id + " 任务名称= " + name);
-	try {
-	    Thread.sleep(5*1000);
-	} catch (InterruptedException e) {
-	    e.printStackTrace();
-	}
+        try {
+            System.out.println("run taskId =" + this.taskId);
+            Thread.sleep(5*1000);
+            System.out.println("end taskId =" + this.taskId);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }       
     }
-
-    public MyTask(int id, String name) {
-	this.id = id;
-	this.name = name;
-    }
-
-    /**
-     * @return the id
-     */
-    public int getId() {
-	return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-	this.id = id;
-    }
-
-    /**
-     * @return the name
-     */
-    public String getName() {
-	return name;
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-	this.name = name;
-    }
-
-    @Override
-    public String toString() {
-	return "MyTask [id=" + id + ", name=" + name + "]";
+     
+    public String toString(){
+        return Integer.toString(this.taskId);
     }
 
 }

@@ -6,19 +6,30 @@ import java.util.concurrent.TimeUnit;
 
 public class UseThreadPoolExecutor1 {
     public static void main(String[] args) {
+	 /**
+         * åœ¨ä½¿ç”¨æœ‰ç•Œé˜Ÿåˆ—æ—¶ï¼Œè‹¥æœ‰æ–°çš„ä»»åŠ¡éœ€è¦æ‰§è¡Œï¼Œå¦‚æœçº¿ç¨‹æ± å®é™…çº¿ç¨‹æ•°å°äºcorePoolSizeï¼Œåˆ™ä¼˜å…ˆåˆ›å»ºçº¿ç¨‹ï¼Œ
+         * è‹¥å¤§äºcorePoolSizeï¼Œåˆ™ä¼šå°†ä»»åŠ¡åŠ å…¥é˜Ÿåˆ—ï¼Œ
+         * è‹¥é˜Ÿåˆ—å·²æ»¡ï¼Œåˆ™åœ¨æ€»çº¿ç¨‹æ•°ä¸å¤§äºmaximumPoolSizeçš„å‰æä¸‹ï¼Œåˆ›å»ºæ–°çš„çº¿ç¨‹ï¼Œ
+         * è‹¥çº¿ç¨‹æ•°å¤§äºmaximumPoolSizeï¼Œåˆ™æ‰§è¡Œæ‹’ç»ç­–ç•¥ã€‚æˆ–å…¶ä»–è‡ªå®šä¹‰æ–¹å¼ã€‚
+         * 
+         */
 	ThreadPoolExecutor threadPoolExecutor = new java.util.concurrent.ThreadPoolExecutor(
-		1, 			//coreSize ÏÈ´´½¨Ò»¸öÏß³ÌÊı
-		2, 			//MaxSize  Ìí¼Óµ½ÓĞ½ç¶ÓÁĞÖĞ£¬Èô´óÓÚ×î´óÖµÖ´ĞĞ¾Ü¾ø²ßÂÔÔò»áÅ×³öÒì³££¬¼ÌĞøÌí¼ÓĞÂµÄÏß³Ì
+		1, 			//coreSize æ ¸å¿ƒçº¿ç¨‹æ•°
+		2, 			//MaxSize  ï¿½ï¿½Óµï¿½ï¿½Ğ½ä»»åŠ¡ï¿½Ğ£ä»»åŠ¡ä»»åŠ¡ï¿½ï¿½ÖµÖ´ï¿½Ğ¾Ü¾ä»»åŠ¡ä»»åŠ¡ï¿½×³ï¿½ï¿½ì³£ä»»åŠ¡ä»»åŠ¡ï¿½ï¿½Âµï¿½ï¿½ß³ï¿½
 		60, 			//60
 		TimeUnit.SECONDS,	
-		new ArrayBlockingQueue<Runnable>(3)); // ÓĞ½ç¶ÓÁĞ
-	MyTask mt1 = new MyTask(1, "ÈÎÎñ1");
-	MyTask mt2 = new MyTask(2, "ÈÎÎñ2");
-	MyTask mt3 = new MyTask(3, "ÈÎÎñ3");
-	MyTask mt4 = new MyTask(4, "ÈÎÎñ4");
-	MyTask mt5 = new MyTask(5, "ÈÎÎñ5");
-	MyTask mt6 = new MyTask(6, "ÈÎÎñ6");
-	MyTask mt7 = new MyTask(7, "ÈÎÎñ7");
+		new ArrayBlockingQueue<Runnable>(3),
+		////new LinkedBlockingQueue<Runnable>()
+		new MyRejected()
+		// new DiscardOldestPolicy()
+		); // æŒ‡å®šä¸€ç§é˜Ÿåˆ—
+	MyTask mt1 = new MyTask(1, "ä»»åŠ¡1");
+	MyTask mt2 = new MyTask(2, "ä»»åŠ¡2");
+	MyTask mt3 = new MyTask(3, "ä»»åŠ¡3");
+	MyTask mt4 = new MyTask(4, "ä»»åŠ¡4");
+	MyTask mt5 = new MyTask(5, "ä»»åŠ¡5");
+	MyTask mt6 = new MyTask(6, "ä»»åŠ¡6");
+	MyTask mt7 = new MyTask(7, "ä»»åŠ¡7");
 	threadPoolExecutor.execute(mt1);
 	threadPoolExecutor.execute(mt2);
 	threadPoolExecutor.execute(mt3);

@@ -1,7 +1,8 @@
 package com.guffly.course01;
 
+
 /**
- * Ïß³Ì»Ø¹Ësynchronized¹Ø¼ü×Ö
+ * çº¿ç¨‹å›é¡¾synchronizedå…³é”®å­—
  * 
  * @author guffly
  * @since 2020/09/12
@@ -16,22 +17,31 @@ public class MyThread extends Thread{
     
     public static void main(String[] args) {
 	/**
-	 * ·ÖÎö£ºµ±¶àÏß³Ì·ÃÎÊmyThreadµÄrun·½·¨Ê±£¬ÒÔÅÅ¶ÓµÄ·½Ê½½øĞĞ´¦Àí¡££¨ÕâÀïµÄÅÅ¶Ó°´ÕÕcpuÏÈºóË³Ğò¶ø¶¨µÄ£©
-	 * 	Ò»¸öÏß³ÌÏëÒªÖ´ĞĞsynchronizedĞŞÊÎµÄ·½·¨ÀïµÄ´úÂë£º
-	 * 	1.³¢ÊÔ»ñµÃËø
-	 * 	2.Èç¹ûÄÃµ½£¬Ö´ĞĞ´úÂëÀïµÄÄÚÈİ£¬ÄÃ²»µ½Ëø£¬Õâ¸öÏß³Ì»á²»¶Ï³¢ÊÔ»ñÈ¡Õâ°ÑËø£¬Ö±µ½ÄÃµ½ÎªÖ¹£¬
-	 * 	  ¶øÇÒ¶àÏß³Ì»áÈ¥¾ºÕùÕâ°ÑËø¡££¨Ò²ĞíÊÇÓĞËø¾ºÕùµÄÎÊÌâ£©
+	 * åˆ†æï¼šå½“å¤šçº¿ç¨‹è®¿é—®myThreadçš„runæ–¹æ³•æ—¶ï¼Œä»¥æ’é˜Ÿçš„æ–¹å¼è¿›è¡Œå¤„ç†ã€‚ï¼ˆè¿™é‡Œçš„æ’é˜ŸæŒ‰ç…§cpuå…ˆåé¡ºåºè€Œå®šçš„ï¼‰
+	 * 	ä¸€ä¸ªçº¿ç¨‹æƒ³è¦æ‰§è¡Œsynchronizedä¿®é¥°çš„æ–¹æ³•é‡Œçš„ä»£ç ï¼š
+	 * 	1.å°è¯•è·å¾—é”
+	 * 	2.å¦‚æœæ‹¿åˆ°ï¼Œæ‰§è¡Œä»£ç é‡Œçš„å†…å®¹ï¼Œæ‹¿ä¸åˆ°é”ï¼Œè¿™ä¸ªçº¿ç¨‹ä¼šä¸æ–­å°è¯•è·å–è¿™æŠŠé”ï¼Œç›´åˆ°æ‹¿åˆ°ä¸ºæ­¢ï¼Œ
+	 * 	  è€Œä¸”å¤šçº¿ç¨‹ä¼šå»ç«äº‰è¿™æŠŠé”ã€‚ï¼ˆä¹Ÿè®¸æ˜¯æœ‰é”ç«äº‰çš„é—®é¢˜ï¼‰
 	 * */
 	MyThread myThread= new MyThread();
 	Thread t1 = new Thread(myThread, "t1 ----- ");
-	Thread t2 = new Thread(myThread, "t2 ----- ");
-	Thread t3 = new Thread(myThread, "t3 ----- ");
-	Thread t4 = new Thread(myThread, "t4 ----- ");
-	Thread t5 = new Thread(myThread, "t5 ----- ");
+//	Thread t2 = new Thread(myThread, "t2 ----- ");
+//	Thread t3 = new Thread(myThread, "t3 ----- ");
+//	Thread t4 = new Thread(myThread, "t4 ----- ");
+//	Thread t5 = new Thread(myThread, "t5 ----- ");
 	t1.start();
-	t2.start();
-	t3.start();
-	t4.start();
-	t5.start();
+//	t2.start();
+//	t3.start();
+//	t4.start();
+//	t5.start();
+		//æŸ¥çœ‹å¯¹è±¡å†…éƒ¨ä¿¡æ¯
+//		System.out.println(ClassLayout.parseInstance(myThread).toPrintable());
+
+//		//æŸ¥çœ‹å¯¹è±¡å¤–éƒ¨ä¿¡æ¯
+//		System.out.println(GraphLayout.parseInstance(myThread).toPrintable());
+//
+//		//è·å–å¯¹è±¡æ€»å¤§å°
+//		System.out.println("size : " + GraphLayout.parseInstance(myThread).totalSize());
+
     }
 }

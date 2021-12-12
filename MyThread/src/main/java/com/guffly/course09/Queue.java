@@ -1,12 +1,17 @@
 package com.guffly.course09;
 
 import java.util.Iterator;
-import java.util.concurrent.*;
-
-import com.sun.org.apache.xpath.internal.compiler.Compiler;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.DelayQueue;
+import java.util.concurrent.Delayed;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.PriorityBlockingQueue;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.TimeUnit;
 
 public class Queue {
-    // ConcurrentLinkedQueue¶ÓÁĞÎŞ×èÈû¶ÓÁĞ
+    // ConcurrentLinkedQueueï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private static void ConcurrentLinkedQueue() {
 	ConcurrentLinkedQueue<String> concurrentLinkedQueue = new ConcurrentLinkedQueue<String>();
 	concurrentLinkedQueue.add("a");
@@ -18,25 +23,31 @@ public class Queue {
 	System.out.println(concurrentLinkedQueue.size());
 	System.out.println(concurrentLinkedQueue.peek());
 	System.out.println(concurrentLinkedQueue.size());
-	System.out.println("=====ConcurrentLinkedQueue¶ÓÁĞ------");
+	System.out.println("=====ConcurrentLinkedQueueï¿½ï¿½ï¿½ï¿½------");
     }
 
-    // ArrayBlockingQueueÓĞ½ç¶ÓÁĞ
+    // ArrayBlockingQueueæœ‰ç•Œé˜Ÿåˆ—
     private static void ArrayBlockingQueue() throws InterruptedException {
-	ArrayBlockingQueue<String> arrayBlockingQueue = new ArrayBlockingQueue<String>(5);
-	arrayBlockingQueue.put("a");
-	arrayBlockingQueue.put("b");
+	ArrayBlockingQueue<String> arrayBlockingQueue = new ArrayBlockingQueue<String>(3);
+//	arrayBlockingQueue.put("a");
+//	arrayBlockingQueue.put("b");
+//	arrayBlockingQueue.put("1");
+//	arrayBlockingQueue.put("2");
+//	arrayBlockingQueue.put("3");
+//    arrayBlockingQueue.take();
+	arrayBlockingQueue.put("4");
 	arrayBlockingQueue.add("c");
 	arrayBlockingQueue.add("d");
 	arrayBlockingQueue.add("e");
-	for (Iterator iterator = arrayBlockingQueue.iterator(); iterator.hasNext();) {
+	arrayBlockingQueue.add("f");
+	for (Iterator<String> iterator = arrayBlockingQueue.iterator(); iterator.hasNext();) {
 	    Object object = (Object) iterator.next();
 	    System.out.println(object);
 	}
-	System.out.println("=====ArrayBlockingQueue¶ÓÁĞ------");
+	System.out.println("=====ArrayBlockingQueueæœ‰ç•Œé˜Ÿåˆ—------");
     }
 
-    // LinkedBlockingQueue×èÈû¶ÓÁĞ
+    // LinkedBlockingQueueï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private static void LinkedBlockingQueue() {
 	LinkedBlockingQueue<String> linkedBlockingQueue = new LinkedBlockingQueue<String>();
 	linkedBlockingQueue.offer("a");
@@ -48,27 +59,27 @@ public class Queue {
 	    Object object = (Object) iterator.next();
 	    System.out.println(object);
 	}
-	System.out.println("=====LinkedBlockingQueue¶ÓÁĞ------");
+	System.out.println("=====LinkedBlockingQueueæ— ç•Œé˜Ÿåˆ—------");
     }
 
-    // SynchronousQueue ·ÃÎÊÊı¾İÁ¿·Ç³£ÉÙ
+    // SynchronousQueue ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç³ï¿½ï¿½ï¿½
     private static void SynchronousQueue() {
 	SynchronousQueue<String> synchronousQueue = new SynchronousQueue<String>();
 	synchronousQueue.add("e32");
-	System.out.println("=====SynchronousQueue¶ÓÁĞ------");
+	System.out.println("=====SynchronousQueue------");
     }
 
     private static void PriorityBlockingQueue() {
 	PriorityBlockingQueue<Task> priorityBlockingQueue = new PriorityBlockingQueue<Task>();
 	Task task1 = new Task();
 	task1.setId(1);
-	task1.setName("ÈÎÎñ1");
+	task1.setName("ä»»åŠ¡1");
 	Task task2 = new Task();
 	task2.setId(3);
-	task2.setName("ÈÎÎñ2");
+	task2.setName("ä»»åŠ¡2");
 	Task task3 = new Task();
 	task3.setId(2);
-	task3.setName("ÈÎÎñ3");
+	task3.setName("ä»»åŠ¡3");
 	priorityBlockingQueue.add(task1);
 	priorityBlockingQueue.add(task2);
 	priorityBlockingQueue.add(task3);
@@ -76,16 +87,16 @@ public class Queue {
 	    Task task = (Task) iterator.next();
 	    System.out.println(" taskId = " + task.getId() + " taskNnme = " + task.getName());
 	}
-	System.out.println("=====PriorityBlockingQueue¶ÓÁĞ------");
+	System.out.println("=====PriorityBlockingQueue------");
     }
 
     public static void main(String[] args) throws InterruptedException {
 	ConcurrentLinkedQueue();
-	ArrayBlockingQueue();
-	LinkedBlockingQueue();
+//	ArrayBlockingQueue();
+//	LinkedBlockingQueue();
 //	SynchronousQueue();
-	PriorityBlockingQueue();
-	DelayQueue();
+//	PriorityBlockingQueue();
+//	DelayQueue();
     }
 
     public static class Task implements Comparable<Task> {
@@ -170,12 +181,12 @@ public class Queue {
 	
 	public void ShangJi(String name, String id, int money) {
 	    Wangmin wangmin = new Wangmin(name, id, 1000*money+System.currentTimeMillis());
-	    System.err.println("ÍøÃû" + wangmin.getName() + " Éí·İÖ¤£º" + wangmin.getId() + " ½»Ç®£º" + money + " ¿ªÊ¼ÉÏÍø¡£¡£¡£");
+	    System.err.println("ç”¨æˆ·åï¼š" + wangmin.getName() + " idï¼š" + wangmin.getId() + " ä½™é¢ï¼š" + money + " å…ƒ");
 	    this.delayQueue.add(wangmin);
 	}
 	
 	public void XiaJi(Wangmin wangmin) {
-	    System.err.println("ÍøÃû" + wangmin.getName() + " Éí·İÖ¤£º" + wangmin.getId() + " ÏÂ»ú¡£¡£¡£");
+	    System.err.println("ç”¨æˆ·åï¼š" + wangmin.getName() + " idï¼š" + wangmin.getId() + " ");
 	}
 	
 	public void run() {
@@ -190,7 +201,7 @@ public class Queue {
     }
     
     private static void DelayQueue() {
-	System.err.println("Íø°É¿ªÊ¼ÓªÒµ");
+	System.err.println("å……é’±");
 	WangBa wangBa = new WangBa();
 	Thread sw = new Thread(wangBa);
 	sw.start();

@@ -13,9 +13,9 @@ public class Consumer implements Runnable{
     public void run() {
 	while(true) {
 	    try {
-		MyTask take = this.blockingQueue.take();
+		MyTask task = this.blockingQueue.take();
 		Thread.sleep(new Random().nextInt(1000));
-		System.out.println("µ±Ç°Ïß³Ì£º"+Thread.currentThread().getName() + ", Ïû·ÑÁËÊı¾İ idÎª£º"+ take.getId());
+		System.out.println("æ¶ˆè´¹è€… "+Thread.currentThread().getName() + ", ä»»åŠ¡idï¼š"+ task.getTaskId());
 	    } catch (InterruptedException e) {
 		e.printStackTrace();
 	    }
