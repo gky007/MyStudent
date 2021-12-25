@@ -3,7 +3,6 @@ package com.guffly.course11;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -14,7 +13,7 @@ public class UseThreadPoolExecutor2 implements Runnable {
     public void run() {
         try {
             int temp = count.incrementAndGet();
-            System.out.println("任务" + temp);
+            System.out.println("任务 " + temp);
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();

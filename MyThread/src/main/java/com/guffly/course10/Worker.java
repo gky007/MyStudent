@@ -18,20 +18,20 @@ public class Worker implements Runnable{
     }
     
     public void run() {
-	while(true) {
-	    Task input = (Task)this.workQueue.poll();
-	    if (input == null) {
-		break;
-	    }
-	    // 真正的做业务处理
-//	    try {
-//		Thread.sleep(1000);
-//	    } catch (InterruptedException e) {
-//		e.printStackTrace();
-//	    }
-	    Object output = MyWorker.handle(input);
-	    this.resultMap.put(Integer.toString(input.getId()), output);
-	}
+		while(true) {
+			Task input = (Task)this.workQueue.poll();
+			if (input == null) {
+				break;
+			}
+			// 真正的做业务处理
+	//	    try {
+	//		Thread.sleep(1000);
+	//	    } catch (InterruptedException e) {
+	//		e.printStackTrace();
+	//	    }
+			Object output = MyWorker.handle(input);
+			this.resultMap.put(Integer.toString(input.getId()), output);
+		}
     }
     
 //    private Object handle(Task input) {

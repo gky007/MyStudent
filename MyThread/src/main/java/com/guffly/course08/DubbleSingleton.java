@@ -1,8 +1,8 @@
 package com.guffly.course08;
 
 /**
- * ���߳�
- * Dubble check ˫��У�鴴������
+ * 多线程
+ * Dubble check 双重校验
  * 
  * @author guffly
  * @since 2020/09/12

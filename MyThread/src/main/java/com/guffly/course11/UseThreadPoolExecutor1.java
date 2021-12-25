@@ -15,7 +15,7 @@ public class UseThreadPoolExecutor1 {
          */
 	ThreadPoolExecutor threadPoolExecutor = new java.util.concurrent.ThreadPoolExecutor(
 		1, 			//coreSize 核心线程数
-		2, 			//MaxSize  ��ӵ��н任务�У任务任务��ִֵ�оܾ任务任务�׳��쳣任务任务��µ��߳�
+		2, 			//MaxSize  添加到有界队列中，若大于最大值执行拒绝策略则会抛出异常，继续添加新的线程
 		60, 			//60
 		TimeUnit.SECONDS,	
 		new ArrayBlockingQueue<Runnable>(3),
@@ -23,12 +23,12 @@ public class UseThreadPoolExecutor1 {
 		new MyRejected()
 		// new DiscardOldestPolicy()
 		); // 指定一种队列
-	MyTask mt1 = new MyTask(1, "任务1");
+	MyTask mt1 = new MyTask(1, "任务1 ");
 	MyTask mt2 = new MyTask(2, "任务2");
 	MyTask mt3 = new MyTask(3, "任务3");
 	MyTask mt4 = new MyTask(4, "任务4");
 	MyTask mt5 = new MyTask(5, "任务5");
-	MyTask mt6 = new MyTask(6, "任务6");
+	MyTask mt6 = new MyTask(6, "任务6 ");
 	MyTask mt7 = new MyTask(7, "任务7");
 	threadPoolExecutor.execute(mt1);
 	threadPoolExecutor.execute(mt2);

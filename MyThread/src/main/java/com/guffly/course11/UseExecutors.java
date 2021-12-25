@@ -1,12 +1,11 @@
 package com.guffly.course11;
 
-import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.concurrent.ScheduledExecutorService;
+
 /**
  * Executors线程池
  * */
@@ -23,7 +22,7 @@ public class UseExecutors {
 //			Executors.newFixedThreadPool(10).submit(new Runnable() {
 //				@Override
 //				public void run() {
-//					System.out.println("newScheduledThreadPool " + finalI + newScheduledThreadPool.toString());
+//					System.out.println("newScheduledThreadPool-" + finalI + newScheduledThreadPool.toString());
 //				}
 //			});
 //		}
@@ -34,7 +33,7 @@ public class UseExecutors {
 			public String call() throws Exception {
 				MyTask call = new MyTask(1, "call");
 				Thread.sleep(2000);
-				return "haha";
+				return "异步返回成功";
 			}
 		});
 		System.out.println("call.get() = " + call.get());

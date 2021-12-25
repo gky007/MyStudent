@@ -35,7 +35,7 @@ public class ListAdd3 {
 //		    synchronized (lock) {
 					for (int i = 0; i < 10; i++) {
 						listAdd2.add();
-						System.out.println("当前线程：" + Thread.currentThread().getName() + "添加了一个元素。。。");
+						System.out.println("当前线程：" + Thread.currentThread().getName() + "添加了一个元素。。。"+ i);
 						Thread.sleep(500);
 						if (listAdd2.size() == 5) {
 //				lock.notify();
@@ -62,7 +62,7 @@ public class ListAdd3 {
 						e.printStackTrace();
 					}
 				}
-				System.out.println("当前线程：" + Thread.currentThread().getName() + "添加了一个元素。。。");
+				System.out.println("当前线程 ：" + Thread.currentThread().getName() + "添加了一个元素。。。");
 				throw new RuntimeException();
 //		  }
 			}

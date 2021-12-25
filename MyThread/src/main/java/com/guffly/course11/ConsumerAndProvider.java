@@ -6,17 +6,17 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class ConsumerAndProvider {
-		// ����һ���̳߳�
-		public static void main(String[] args) throws InterruptedException {
+	// 创建一个线程池
+	public static void main(String[] args) throws InterruptedException {
 
 		BlockingQueue<MyTask> blockingQueue = new LinkedBlockingQueue<MyTask>(10);
 
-		// ������
+		// 生产者
 		Provider p1 = new Provider(blockingQueue);
 		Provider p2 = new Provider(blockingQueue);
 		Provider p3 = new Provider(blockingQueue);
 
-		// ������
+		// 消费者
 		Consumer c1 = new Consumer(blockingQueue);
 		Consumer c2 = new Consumer(blockingQueue);
 		Consumer c3 = new Consumer(blockingQueue);

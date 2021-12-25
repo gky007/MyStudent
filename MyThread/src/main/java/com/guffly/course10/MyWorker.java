@@ -7,7 +7,7 @@ public class MyWorker extends Worker{
 	Object output = null;
 	//task任务很耗时
 	int srNo = new Random().nextInt(1000);
-//	System.out.println("单号：" + srNo);
+	System.out.println("单号：" + srNo);
 	output = input.getPrice();
 	return output;
     }

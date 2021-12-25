@@ -8,7 +8,7 @@ package com.guffly.course08;
  */
 public class InnerSingleton {
     private  static class Singleton {	
-	private static Singleton single = new Singleton();
+		private static Singleton single = new Singleton();
     }
     
     public static Singleton getSingleton() {

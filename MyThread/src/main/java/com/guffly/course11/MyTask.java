@@ -28,7 +28,7 @@ public class MyTask implements Runnable {
     public void run() {
         try {
             System.out.println("run taskId =" + this.taskId);
-            Thread.sleep(5*1000);
+            Thread.sleep(3*1000);
             System.out.println("end taskId =" + this.taskId);
         } catch (InterruptedException e) {
             e.printStackTrace();

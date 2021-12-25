@@ -28,7 +28,7 @@ public class Provider implements Runnable {
 				MyTask myTask = new MyTask(id, "任务" + id);
 				System.out.println("生产者： " + Thread.currentThread().getName() + ", 任务id " + id + " ");
 				if (!this.blockingQueue.offer(myTask, 2, TimeUnit.SECONDS)) {
-					System.out.println("�ύ���ݵ�������ʧ�ܡ�������");
+					System.out.println("提交数据到缓冲区失败。。。。");
 				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();

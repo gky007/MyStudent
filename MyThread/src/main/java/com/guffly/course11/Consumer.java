@@ -11,14 +11,14 @@ public class Consumer implements Runnable{
     }
 
     public void run() {
-	while(true) {
-	    try {
-		MyTask task = this.blockingQueue.take();
-		Thread.sleep(new Random().nextInt(1000));
-		System.out.println("消费者 "+Thread.currentThread().getName() + ", 任务id："+ task.getTaskId());
-	    } catch (InterruptedException e) {
-		e.printStackTrace();
-	    }
-	}
+		while(true) {
+			try {
+				MyTask task = this.blockingQueue.take();
+				Thread.sleep(new Random().nextInt(1000));
+				System.out.println("消费者 "+Thread.currentThread().getName() + ", 任务id："+ task.getTaskId());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
     }
 }

@@ -10,10 +10,10 @@ public class VolatileNoAtomic2 extends Thread {
     private static AtomicInteger count = new AtomicInteger(0);
 
     public static void addCount() {
-	for (int i = 0; i < 1000; i++) {
-	    count.incrementAndGet();
-	}
-	System.out.println(count);
+		for (int i = 0; i < 1000; i++) {
+			count.incrementAndGet();
+		}
+		System.out.println(count);
     }
 
     public void run() {
@@ -22,13 +22,13 @@ public class VolatileNoAtomic2 extends Thread {
 
     // 最后一次不是1000，volatile不具备原子性
     public static void main(String[] args) {
-	VolatileNoAtomic2[] arr = new VolatileNoAtomic2[10];
-	for (int i = 0; i < 10; i++) {
-	    arr[i] = new VolatileNoAtomic2();
-	}
+		VolatileNoAtomic2[] arr = new VolatileNoAtomic2[10];
+		for (int i = 0; i < 10; i++) {
+			arr[i] = new VolatileNoAtomic2();
+		}
 
-	for (int i = 0; i < 10; i++) {
-	    arr[i].start();
-	}
+		for (int i = 0; i < 10; i++) {
+			arr[i].start();
+		}
     }
 }
